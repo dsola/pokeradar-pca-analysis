@@ -52,3 +52,7 @@ defineUrban <- function(appear){
 appearsProcessed <- appears
 appearsProcessed$urbanization <- apply(appears[,urbanColNames], 1, defineUrban)
 appearsProcessed[,urbanColNames] <- NULL
+
+## The location coordinates are not relevant for this study
+locationCoordinatesMatches <- subset(appearColNames, grepl("cellId|latitude|longitude", appearColNames))
+appearsProcessed[, locationCoordinatesMatches] <- NULL
