@@ -32,10 +32,10 @@ coocMatches <- subset(appearColNames, grepl("cooc_", appearColNames))
 appears[, coocMatches] <- NULL
 
 urbanColNames <- c("rural","midurban","suburban","urban")
-## Urban -> urban + suburban + midurban
-## Suburban -> suburban + midurban
-## Rural <- rural
-## MidUrban <- midurban
+### Urban -> urban + suburban + midurban
+### Suburban -> suburban + midurban
+### Rural <- rural
+### MidUrban <- midurban
 
 ## This function returns the new category variable following the previous rules
 defineUrban <- function(appear){
@@ -56,3 +56,6 @@ appearsProcessed[,urbanColNames] <- NULL
 ## The location coordinates are not relevant for this study
 locationCoordinatesMatches <- subset(appearColNames, grepl("cellId|latitude|longitude", appearColNames))
 appearsProcessed[, locationCoordinatesMatches] <- NULL
+
+## I don't know the reference of the identifier X_id, so we can delete it.
+appearsProcessed$X_id <- NULL
