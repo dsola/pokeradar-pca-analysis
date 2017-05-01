@@ -27,5 +27,7 @@ source("R/weather_data_analysis.R")
 ## Convert the class attribute into factor variable
 appearsProcessed$class <- as.factor(appearsProcessed$class)
 
+## We can get the Pokémon class (I was thinking class was the Pokémon type but it's the speice)
+
 ## Execute the PCA analysis
 source("R/pca_analysis.R")
