@@ -51,6 +51,7 @@ defineUrban <- function(appear){
 }
 appearsProcessed <- appears
 appearsProcessed$urbanization <- apply(appears[,urbanColNames], 1, defineUrban)
+appearsProcessed$urbanization <- as.factor(appearsProcessed$urbanization)
 appearsProcessed[,urbanColNames] <- NULL
 
 ## The location coordinates are not relevant for this study
@@ -59,3 +60,38 @@ appearsProcessed[, locationCoordinatesMatches] <- NULL
 
 ## I don't know the reference of the identifier X_id, so we can delete it.
 appearsProcessed$X_id <- NULL
+
+## The information about the appeared time it's splitted in different variables
+###################################################################################
+### appearedLocalTime (continuous variable)
+### appearedHour (continous variable, included in appeared Local time) 
+### appearedDay (continous variable, included in appeared Local time)
+### appearedDayOfWeek (factor variable, included in appeared Local time)
+### appearedTimeOfDay (factor variable, can be extracted from appeared Local time)
+###################################################################################
+### Take a look to the continous variables
+hist(appearsProcessed$appearedHour, main="Histogram of appeared hours")
+boxplot(appearsProcessed$appearedHour, main="Box Plot of appeared hours")
+
+hist(appearsProcessed$appearedDay, main="Histogram of appeared days")
+boxplot(appearsProcessed$appearedDay, main="Box Plot of appeared days")
+### The distribution of this variables appears to be significant, I think it's not necessary to manipulated
+
+## Now let's take a look to the factor variables
+summary(appearsProcessed$appearedDayOfWeek) #WTF dummy_day means? I suppose it's a NA
+## We can get this info without NA's
+defineDayOfWeek <- function(appear){
+  date <- as.Date(appear["appearedLocalTime"], format='%Y-%m-%dT%H:%M:%S')
+  format.Date(date,"%A")
+}
+appearsProcessed$appearedDayOfWeek <- apply(appearsProcessed, 1, defineDayOfWeek)
+appearsProcessed$appearedDayOfWeek <- as.factor(appearsProcessed$appearedDayOfWeek)
+
+summary(appearsProcessed$appearedTimeOfDay) #Looks good :)
+
+### I think the appearedLocalTime is not a good variable to analyze because it's difficult to find occurences
+appearsProcessed$appearedLocalTime <- NULL
+
+## The continent is not always parsed right...
+
+
