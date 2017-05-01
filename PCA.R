@@ -26,3 +26,6 @@ source("R/weather_data_analysis.R")
 
 ## Convert the class attribute into factor variable
 appearsProcessed$class <- as.factor(appearsProcessed$class)
+
+## Execute the PCA analysis
+source("R/pca_analysis.R")

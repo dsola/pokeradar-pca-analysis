@@ -83,3 +83,11 @@ getSunsetFactorTime <- function(appear) {
 getSunriseFactorTime <- function(appear) {
   getFactorTime(appear["sunriseHour"], appear["sunriseMinute"])
 }
+
+tranformCloseToWaterToFactorVariable <- function(appear) {
+  if (appear["closeToWater"] == "true") {
+    "Yes"
+  } else {
+    "No"
+  }
+}

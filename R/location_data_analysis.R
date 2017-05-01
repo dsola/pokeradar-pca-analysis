@@ -40,3 +40,7 @@ appearsProcessed$terrainType <- as.factor(appearsProcessed$terrainType)
 ## The location coordinates are not relevant for this study
 locationCoordinatesMatches <- subset(appearColNames, grepl("cellId|latitude|longitude", appearColNames))
 appearsProcessed[, locationCoordinatesMatches] <- NULL
+
+## Transform closeToWater variable into categories
+appearsProcessed$closeToWater <- apply(appearsProcessed, 1, tranformCloseToWaterToFactorVariable)
+appearsProcessed$closeToWater <- as.factor(appearsProcessed$closeToWater)
