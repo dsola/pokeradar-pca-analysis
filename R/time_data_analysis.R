@@ -29,10 +29,6 @@ boxplot(appearsProcessed$appearedDay, main="Box Plot of appeared days")
 ## Now let's take a look to the factor variables
 summary(appearsProcessed$appearedDayOfWeek) #WTF dummy_day means? I suppose it's a NA
 ## We can get this info without NA's
-defineDayOfWeek <- function(appear){
-  date <- as.Date(appear["appearedLocalTime"], format='%Y-%m-%dT%H:%M:%S')
-  format.Date(date,"%A")
-}
 appearsProcessed$appearedDayOfWeek <- apply(appearsProcessed, 1, defineDayOfWeek)
 appearsProcessed$appearedDayOfWeek <- as.factor(appearsProcessed$appearedDayOfWeek)
 
