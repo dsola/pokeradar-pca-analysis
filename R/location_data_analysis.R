@@ -35,6 +35,7 @@ appearsProcessed$pokestopDistanceKm <- as.integer(appearsProcessed$pokestopDista
 
 ### Transform terrain Type variable to understanding factor variable
 appearsProcessed$terrainType <- apply(appearsProcessed, 1, transformTerrainType)
+appearsProcessed$terrainType <- as.factor(appearsProcessed$terrainType)
 
 ## The location coordinates are not relevant for this study
 locationCoordinatesMatches <- subset(appearColNames, grepl("cellId|latitude|longitude", appearColNames))

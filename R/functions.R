@@ -39,6 +39,7 @@ terrainTypeConversions[15] <- "Cropland/Natural vegetation mosaic"
 terrainTypeConversions[16] <- "Snow and ice"
 terrainTypeConversions[17] <- "Barren or sparsely vegetated"
 
+# TODO: improve this function
 transformTerrainType <- function(appear) {
   terrainType <- as.integer(appear["terrainType"])
   if (terrainType == 0) "Water"
@@ -59,4 +60,26 @@ transformTerrainType <- function(appear) {
   else if (terrainType == 15) "Snow and ice"
   else if (terrainType == 16) "Barren or sparsely vegetated"
   else "Unknown"
+}
+
+getFactorTime <- function(hours, minutes) {
+  hoursChar <- as.character(hours)  
+  if (minutes < 30) {
+    hoursChar
+  }
+  else if (minutes < 45) {
+    paste(hoursChar, "30", sep=":")
+  }
+  else {
+    nextHour <- as.integer(hours) + 1
+    as.character(nextHour)
+  }
+}
+
+getSunsetFactorTime <- function(appear) {
+  getFactorTime(appear["sunsetHour"], appear["sunsetMinute"])
+}
+
+getSunriseFactorTime <- function(appear) {
+  getFactorTime(appear["sunriseHour"], appear["sunriseMinute"])
 }
