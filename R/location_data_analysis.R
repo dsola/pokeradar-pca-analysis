@@ -7,6 +7,7 @@
 ### gymDistanceKm (continous variable) -> defines the distance from a gym
 ### pokestopInX (boolean variable) -> defines if the distance from a pokestop is greater than a value
 ### pokestopDistanceKm (boolean variable) -> defines the distance from a pokestop
+### closeToWater (boolean variable) - defines if the position it's close to the Water
 ###################################################################################
 
 ## Join (urban, suburban, midurban and rural) to only one factor variable

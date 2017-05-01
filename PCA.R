@@ -19,3 +19,6 @@ source("R/time_data_analysis.R")
 
 # Let's analyze the location data!
 source("R/location_data_analysis.R")
+
+# Let's analyze the wather data!
+source("R/weather_data_analysis.R")
