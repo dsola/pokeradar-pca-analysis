@@ -3,10 +3,12 @@ source("R/functions.R")
 
 ## Load the dataset
 appears <- read.csv("data/300k.csv",header=T)
+## Define the number of rows to analyze
+nRows <- 1000
 ## Display the columns
 appearColNames <- colnames(appears)
-## Store into another variable to start the pre-processing
-appearsProcessed <- appears
+## Store 1000 random observations into another variable to start the pre-processing
+appearsProcessed <- appears[sample(1:nRows),]
 
 ## Delete co-occurrence because it's not necessary to generate a PCA
 coocMatches <- subset(appearColNames, grepl("cooc_", appearColNames))
