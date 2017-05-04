@@ -49,7 +49,7 @@ getFactorTime <- function(hours, minutes) {
   if (minutes < 30) {
     hoursChar
   }
-  else if (minutes < 45) {
+  else if (minutes <= 45) {
     paste(hoursChar, "30", sep=":")
   }
   else {
@@ -72,4 +72,11 @@ tranformCloseToWaterToFactorVariable <- function(appear) {
   } else {
     "No"
   }
+}
+
+transformFactorToNumeric <- function(variable) {
+  if (is.factor(variable)) {
+    as.numeric(variable)
+  }
+  variable
 }

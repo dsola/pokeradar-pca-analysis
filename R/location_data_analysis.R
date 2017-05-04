@@ -16,7 +16,7 @@
 appearsProcessed[1:100,c("urban","suburban","midurban","rural")] # Not sure to transform it, because a row can be multiple values
 unique(appearsProcessed[,c("urban","suburban","midurban","rural")]) # Check the posible combinations
 urbanColNames <- c("rural","midurban","suburban","urban")
-appearsProcessed$urbanization <- apply(appears[,urbanColNames], 1, defineUrban)
+appearsProcessed$urbanization <- apply(appearsProcessed[,urbanColNames], 1, defineUrban)
 appearsProcessed$urbanization <- as.factor(appearsProcessed$urbanization)
 appearsProcessed[,urbanColNames] <- NULL
 ## This variable represents the factorization of population_density, so population_density can be excluded
