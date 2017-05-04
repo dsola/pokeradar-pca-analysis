@@ -21,24 +21,6 @@ defineDayOfWeek <- function(appear){
 }
 
 #http://glcf.umd.edu/data/lc/
-terrainTypeConversions[1] <- "Water"
-terrainTypeConversions[2] <- "Evergreen Needleleaf forest"
-terrainTypeConversions[3] <- "Evergreen Broadleaf forest"
-terrainTypeConversions[4] <- "Deciduous Needleleaf forest"
-terrainTypeConversions[5] <- "Deciduous Broadleaf forest"
-terrainTypeConversions[6] <- "Mixed forest"
-terrainTypeConversions[7] <- "Closed shrublands"
-terrainTypeConversions[8] <- "Open shrublands"
-terrainTypeConversions[9] <- "Woody savannas"
-terrainTypeConversions[10] <- "Savannas"
-terrainTypeConversions[11] <- "Grasslands"
-terrainTypeConversions[12] <- "Permanent wetlands"
-terrainTypeConversions[13] <- "Croplands"
-terrainTypeConversions[14] <- "Urban and built-up"
-terrainTypeConversions[15] <- "Cropland/Natural vegetation mosaic"
-terrainTypeConversions[16] <- "Snow and ice"
-terrainTypeConversions[17] <- "Barren or sparsely vegetated"
-
 # TODO: improve this function
 transformTerrainType <- function(appear) {
   terrainType <- as.integer(appear["terrainType"])

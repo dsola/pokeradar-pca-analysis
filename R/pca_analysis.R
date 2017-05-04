@@ -9,9 +9,10 @@ numericVariables <- c(
   "appearedHour", "appearedMinute", "appearedDay",
   "temperature", "windSpeed", "windBearing", "gymDistanceKm", "pokestopDistanceKm"
 )
-appearColNames <- colnames(appearsProcessed)
+
 #Transform dataframe to matrix
-appearsMatrix <- as.matrix(appearsProcessed, ncol=length(appearColNames),  byrow = TRUE)
+appearsMatrix <- matrix(unlist(appearsProcessed), ncol = length(appearsProcessed), byrow = TRUE)
+#Execute the PCA
 pca.desp <- PCA(
   appearsMatrix, 
   quali.sup=c(2,5,7,8,9,10,15,18,19,20,21), 
@@ -19,3 +20,13 @@ pca.desp <- PCA(
   scale.unit=T,
   graph = TRUE
 )
+attributes(pca.desp)
+pca.desp$eig
+
+#Representation for the Screenplot
+pca.desp$ind$coor
+plot(pca.desp$eig$eigenvalue, type="l")
+
+#3
+## Sin rotar
+pca.desp$var$cor
