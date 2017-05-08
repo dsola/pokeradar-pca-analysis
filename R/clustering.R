@@ -25,7 +25,7 @@ cut6 <- cutree(hclus.appears,nc)
 plot(Psi[,1],Psi[,2],type="n",main="Clustering of Pokémn appears in 10 classes")
 text(Psi[,1],Psi[,2],col=cut6,labels="pokemonId",cex = 0.6)
 abline(h=0,v=0,col="gray")
-legend("topleft",c("c1","c2","c3","c4","c5","c6"),pch=20,col=c(1:10))
+legend("topleft",c("c1","c2","c3","c4","c5","c6","c7","c8","c9","c10"),pch=20,col=c(1:10))
 
 # NUMERO DE APARICIONES POR CLASE
 table(cut6)
@@ -61,4 +61,4 @@ kmeans$size
 plot(Psi[,1],Psi[,2],type="n",main="Clustering of Pokémon appears in 10 classes")
 text(Psi[,1],Psi[,2],col=kmeans$cluster,labels="pokemonId",cex = 0.6)
 abline(h=0,v=0,col="gray")
-legend("topleft",c("c1","c2","c3","c4","c5","c6"),pch=20,col=c(1:10))
+legend("topleft",c("c1","c2","c3","c4","c5","c6","c7","c8","c9","c10"),pch=20,col=c(1:10))
