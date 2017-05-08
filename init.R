@@ -2,7 +2,7 @@ library(FactoMineR);
 source("R/functions.R")
 
 ## Load the dataset
-appears <- read.csv("data/300k.csv",header=T)
+appears <- read.csv("data/300k.csv",header=T, check.names = FALSE)
 ## Define the number of rows to analyze
 nRows <- 10000
 ## Display the columns
@@ -14,7 +14,7 @@ appearsProcessed <- appears[sample(1:nRows, replace = TRUE),]
 coocMatches <- subset(appearColNames, grepl("cooc_", appearColNames))
 appearsProcessed[, coocMatches] <- NULL
 
-## I don't know the reference of the identifier X_id, so we can delete it.
+## I don't know the reference of the X_id identifier, so we can delete it.
 appearsProcessed$X_id <- NULL
 
 # Let's analyze the time data!
@@ -29,7 +29,13 @@ source("R/weather_data_analysis.R")
 ## Convert the class attribute into factor variable
 appearsProcessed$class <- as.factor(appearsProcessed$class)
 
-## We can get the Pokémon class (I was thinking class was the Pokémon type but it's the speice)
-
 ## Execute the PCA analysis
-source("R/pca_analysis.R")
+#source("R/pca_analysis.R")
+
+# Execute the clustering analysis
+source("R/profiling.R")
+
+# Execute the profiling analysis
+source("R/clustering.R")
+
+
