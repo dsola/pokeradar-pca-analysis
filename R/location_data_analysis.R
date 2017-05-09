@@ -31,7 +31,7 @@ appearsProcessed[, gymInMatches] <- NULL
 pokestopInMatches <- subset(appearColNames, grepl("pokestopIn", appearColNames))
 appearsProcessed[, pokestopInMatches] <- NULL
 ## Transform PokestopDistanceKm into continous variable
-appearsProcessed$pokestopDistanceKm <- as.integer(appearsProcessed$pokestopDistanceKm)
+appearsProcessed$pokestopDistanceKm <- as.double(appearsProcessed$pokestopDistanceKm)
 
 ### Transform terrain Type variable to understanding factor variable
 appearsProcessed$terrainType <- apply(appearsProcessed, 1, transformTerrainType)

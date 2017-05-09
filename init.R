@@ -16,6 +16,7 @@ appearsProcessed[, coocMatches] <- NULL
 
 ## I don't know the reference of the X_id identifier, so we can delete it.
 appearsProcessed$X_id <- NULL
+appearsProcessed$'_id' <- NULL
 
 # Let's analyze the time data!
 source("R/time_data_analysis.R")
@@ -28,7 +29,8 @@ source("R/weather_data_analysis.R")
 
 ## Convert the class attribute into factor variable
 appearsProcessed$class <- as.factor(appearsProcessed$class)
-
+## Pokemon ID represents the same than class...
+appearsProcessed$pokemonId <- NULL
 ## Execute the PCA analysis
 source("R/pca_analysis.R")
 

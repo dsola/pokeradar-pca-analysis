@@ -1,64 +1,53 @@
-
+# Get the coordinates of the eigenValues obtained in PCA
 Psi = pca.desp$ind$coord
-
-# CLUSTERING DE LOS COCHES SEGUN SUS CARACTERISTICAS TECNICAS
-
-# CALCULO DE LA MATRIZ DE DISTANCIAS ENTRE COCHES A PARTIR DE LAS LAS COMPONENTES SIGNFICATIVAS
+# Calculate the distance matrix between individuals
 dist.appears <- dist(Psi)
 
-# CLUSTERING JERARQUICO, METODO DE Ward
+# the heriarchical clustering tree, using the Ward method
 hclus.appears <- hclust(dist.appears,method="ward.D2")
-
-# PLOT DEL ARBOL JERAQUICO OBTENIDO
+# Generate the plot of the clustering tree
 plot(hclus.appears,cex=0.3)
 
-# DIAGRAMA DE BARRAS DEL INDICE DE AGREGACION DE LAS ULTIMAS 29 AGREGACIONES FORMADAS
+# generate a barplot of aggregation index given the last 30 aggregations in the tree
 barplot(hclus.appears$height[(nrow(appearsProcessed)-30):(nrow(appearsProcessed)-1)])
 
-# CUANTAS CLASES (CLUSTERS) DE APARICIONES HAY?
-nc = 10
+# How many clusters are significative? (Using the elbow rule in barplot)
+numberOfClasses <- 10
 
-# CORTE DEL ARBOL DE AGREGACION EN nc CLASES
-cut6 <- cutree(hclus.appears,nc)
+# Obtain the tree to get 10 classes
+cuttedTree <- cutree(hclus.appears,nc)
 
-# GRAFICO DE LAS nc CLASES EN EL PRIMER PLANO FACTORIAL
+# Generate a plot with the selected classes in a factorial space
 plot(Psi[,1],Psi[,2],type="n",main="Clustering of Pokémn appears in 10 classes")
-text(Psi[,1],Psi[,2],col=cut6,labels="pokemonId",cex = 0.6)
+text(Psi[,1],Psi[,2],col=cuttedTree,labels="pokemonId",cex = 0.6)
 abline(h=0,v=0,col="gray")
-legend("topleft",c("c1","c2","c3","c4","c5","c6","c7","c8","c9","c10"),pch=20,col=c(1:10))
+legend("topleft",c("c1","c2","c3","c4","c5","c6","c7","c8","c9","c10"),pch=20,col=c(1:numberOfClasses))
 
-# NUMERO DE APARICIONES POR CLASE
-table(cut6)
+# Number of elements per class
+table(cuttedTree)
 
-# CALIDAD DEL CORTE DEL ARBOL JERARQUICO
-
-cdg <- aggregate(as.data.frame(Psi),list(cut6),mean)[,2:(nd+1)]
-cdg
-
-Bss <- sum(rowSums(cdg^2)*as.numeric(table(cut6)))
+# Calculate the quality of the tree
+cdg <- aggregate(as.data.frame(Psi),list(cuttedTree),mean)[,2:(numberOfDimensions+1)]
+Bss <- sum(rowSums(cdg^2)*as.numeric(table(cuttedTree)))
 Tss <- sum(Psi^2)
-
-100*Bss/Tss
-
-
-# CONSOLIDACION DE LA PARTICION
-
-# CALCULO DE LOS CENTROIDES DE LAS nc CLASES OBTENIDAS POR CORTE DEL ARBOL JERARQUICO
-cdg.nc <- aggregate(as.data.frame(Psi),list(cut6),mean)[,2:(nd+1)]
+(TreeQuality <- 100*Bss/Tss)
 
 
-# ALGORITMO kmeans CON CENTROS INICIALES EN LOS CENTROIDES cdg.nc
-kmeans <- kmeans(Psi,centers=cdg.nc)
+######################################
+## CONSOLIDATION
+######################################
 
-# NUMERO DE COCHES POR CLASE FINAL
-kmeans$size
+# Calculate the centers of the classes using the mean
+classMeanCenters <- aggregate(as.data.frame(Psi),list(cuttedTree),mean)[,2:(numberOfDimensions+1)]
+# Execute the Kmeans Algorihtm with the initial centers obtained in the previous point (classMeanCenters)
+kmeans <- kmeans(Psi,centers=classMeanCenters)
+# Final number of classes
+finalNumberOfClasses <- kmeans$size
+# Calculate the quality of the tree again
+(100*kmeans$betweenss/kmeans$totss)
 
-# CALIDAD DE LA PARTICION FINAL EN 10 CLASSES
-
-100*kmeans$betweenss/kmeans$totss
-
-# VISUALIZACION DE LAS nc CLASES FINALES EN EL PRIMER PLANO FACTORIAL
+# Generate a plot with the selected classes in a factorial space
 plot(Psi[,1],Psi[,2],type="n",main="Clustering of Pokémon appears in 10 classes")
 text(Psi[,1],Psi[,2],col=kmeans$cluster,labels="pokemonId",cex = 0.6)
 abline(h=0,v=0,col="gray")
-legend("topleft",c("c1","c2","c3","c4","c5","c6","c7","c8","c9","c10"),pch=20,col=c(1:10))
+legend("topleft",c("c1","c2","c3","c4","c5","c6","c7","c8","c9","c10"),pch=20,col=c(1:finalNumberOfClasses))
