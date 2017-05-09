@@ -1,4 +1,4 @@
-data(appearsProcessed)
 ## This script generates the data profiling
-appearsDescription <- catdes(df, num.var = 1, proba = 0.1)
+## We have to choose which variable wants to -> urban
+appearsDescription <- catdes(appearsProcessed, num.var = 18)
 appearsDescription

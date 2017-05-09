@@ -31,6 +31,10 @@ source("R/weather_data_analysis.R")
 appearsProcessed$class <- as.factor(appearsProcessed$class)
 ## Pokemon ID represents the same than class...
 appearsProcessed$pokemonId <- NULL
+
+## TODO: Add if the Pokémon is rare, the Pokémon type or the pokemon habitats
+
+
 ## Execute the PCA analysis
 source("R/pca_analysis.R")
 
@@ -38,6 +42,6 @@ source("R/pca_analysis.R")
 source("R/clustering.R")
 
 # Execute the profiling analysis
-#source("R/profiling.R")
+source("R/profiling.R")
 
 

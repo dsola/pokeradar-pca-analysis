@@ -12,16 +12,16 @@ plot(hclus.appears,cex=0.3)
 barplot(hclus.appears$height[(nrow(appearsProcessed)-30):(nrow(appearsProcessed)-1)])
 
 # How many clusters are significative? (Using the elbow rule in barplot)
-numberOfClasses <- 10
+numberOfClasses <- 8
 
-# Obtain the tree to get 10 classes
-cuttedTree <- cutree(hclus.appears,nc)
+# Obtain the tree to get numberOfClasses classes
+cuttedTree <- cutree(hclus.appears,numberOfClasses)
 
 # Generate a plot with the selected classes in a factorial space
 plot(Psi[,1],Psi[,2],type="n",main="Clustering of Pokémn appears in 10 classes")
 text(Psi[,1],Psi[,2],col=cuttedTree,labels="pokemonId",cex = 0.6)
 abline(h=0,v=0,col="gray")
-legend("topleft",c("c1","c2","c3","c4","c5","c6","c7","c8","c9","c10"),pch=20,col=c(1:numberOfClasses))
+legend("topleft",c("c1","c2","c3","c4","c5","c6","c7","c8"),pch=20,col=c(1:numberOfClasses))
 
 # Number of elements per class
 table(cuttedTree)
@@ -41,8 +41,8 @@ Tss <- sum(Psi^2)
 classMeanCenters <- aggregate(as.data.frame(Psi),list(cuttedTree),mean)[,2:(numberOfDimensions+1)]
 # Execute the Kmeans Algorihtm with the initial centers obtained in the previous point (classMeanCenters)
 kmeans <- kmeans(Psi,centers=classMeanCenters)
-# Final number of classes
-finalNumberOfClasses <- kmeans$size
+# Final number of instances per class
+kmeans$size
 # Calculate the quality of the tree again
 (100*kmeans$betweenss/kmeans$totss)
 
@@ -50,4 +50,4 @@ finalNumberOfClasses <- kmeans$size
 plot(Psi[,1],Psi[,2],type="n",main="Clustering of Pokémon appears in 10 classes")
 text(Psi[,1],Psi[,2],col=kmeans$cluster,labels="pokemonId",cex = 0.6)
 abline(h=0,v=0,col="gray")
-legend("topleft",c("c1","c2","c3","c4","c5","c6","c7","c8","c9","c10"),pch=20,col=c(1:finalNumberOfClasses))
+legend("topleft",c("c1","c2","c3","c4","c5","c6","c7","c8"),pch=20,col=c(1:numberOfClasses))
