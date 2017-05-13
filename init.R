@@ -14,9 +14,9 @@ appearColNames <- colnames(appears)
 ## Store 10000 random observations into another variable to start the pre-processing
 appearsProcessed <- appears[sample(1:nRows, replace = TRUE),]
 
-## Delete co-occurrence because it's not necessary to generate a PCA
+## Transform co-occurrence to numeric variables
 coocMatches <- subset(appearColNames, grepl("cooc_", appearColNames))
-appearsProcessed[, coocMatches] <- NULL
+appearsProcessed[, coocMatches] <- lapply(appearsProcessed[, coocMatches], as.numeric)
 
 ## I don't know the reference of the X_id identifier, so we can delete it.
 appearsProcessed$X_id <- NULL

@@ -80,3 +80,39 @@ transformFactorToNumeric <- function(variable) {
   }
   variable
 }
+
+tranformPokeStopDistanceToFactorVariable <- function(appear) {
+  if (appear["pokestopIn100m"] == "true") { 
+    "pokestopIn100m"
+  } else if (appear["pokestopIn250m"] == "true") {
+    "pokestopIn250m"
+  } else if (appear["pokestopIn500m"] == "true") {
+    "pokestopIn500m"
+  } else if (appear["pokestopIn1000m"] == "true") {
+    "pokestopIn1000m"
+  } else if (appear["pokestopIn2500m"] == "true") {
+    "pokestopIn2500m"
+  } else if (appear["pokestopIn5000m"] == "true") {
+    "pokestopIn5000m"
+  } else {
+    "pokestopIn+5000m"
+  }
+}
+
+tranformGymDistanceToFactorVariable <- function(appear) {
+  if (appear["gymIn100m"] == "true") { 
+    "gymIn100m"
+  } else if (appear["gymIn250m"] == "true") {
+    "gymIn250m"
+  } else if (appear["gymIn500m"] == "true") {
+    "gymIn500m"
+  } else if (appear["gymIn1000m"] == "true") {
+    "gymIn1000m"
+  } else if (appear["gymIn2500m"] == "true") {
+    "gymIn2500m"
+  } else if (appear["gymIn5000m"] == "true") {
+    "gymIn5000m"
+  } else {
+    "gymIn+5000m"
+  }
+}

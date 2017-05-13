@@ -23,17 +23,21 @@ appearsProcessed[,urbanColNames] <- NULL
 ## from our dataset because we are not interested in the specific number of population
 appearsProcessed$population_density <- NULL
 
-## Delete gymInXm because it's informed in gymDistanceKm
+## We can transform the gymDistance into a factor variable
 gymInMatches <- subset(appearColNames, grepl("gymIn", appearColNames))
+## Delete Gym distance numeric variable
+appearsProcessed$gymDistanceKm <- NULL
+appearsProcessed$gymDistance <- apply(appearsProcessed[, gymInMatches],1, tranformGymDistanceToFactorVariable)
+appearsProcessed$gymDistance <- as.factor(appearsProcessed$gymDistance)
 appearsProcessed[, gymInMatches] <- NULL
 
-## Podemos transformar a categorica con las booleanas y eliminar la numérica también como el caso anterior
-
-## Delete pokestopInX because it's informed in pokestopDistanceKm
+## We can transform the PokéStop distance into a factor variable
 pokestopInMatches <- subset(appearColNames, grepl("pokestopIn", appearColNames))
+appearsProcessed$pokestopDistance <- apply(appearsProcessed[, pokestopInMatches], 1, tranformPokeStopDistanceToFactorVariable)
+appearsProcessed$pokestopDistance <- as.factor(appearsProcessed$pokestopDistance)
+## Delete Pokéstop distance numeric variable
+appearsProcessed$pokestopDistanceKm <- NULL
 appearsProcessed[, pokestopInMatches] <- NULL
-## Transform PokestopDistanceKm into continous variable
-appearsProcessed$pokestopDistanceKm <- as.double(appearsProcessed$pokestopDistanceKm)
 
 ### Transform terrain Type variable to understanding factor variable
 appearsProcessed$terrainType <- apply(appearsProcessed, 1, transformTerrainType)
