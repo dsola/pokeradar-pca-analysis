@@ -24,7 +24,8 @@ boxplot(appearsProcessed$appearedHour, main="Box Plot of appeared hours")
 
 hist(appearsProcessed$appearedDay, main="Histogram of appeared days")
 boxplot(appearsProcessed$appearedDay, main="Box Plot of appeared days")
-### The distribution of this variables appears to be significant, I think it's not necessary to manipulated
+# The same than day of week
+appearsProcessed$appearedDay <- NULL
 
 ## Now let's take a look to the factor variables
 summary(appearsProcessed$appearedDayOfWeek) #WTF dummy_day means? I suppose it's a NA

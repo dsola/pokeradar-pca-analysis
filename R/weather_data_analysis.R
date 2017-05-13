@@ -19,6 +19,7 @@ appearsProcessed$weather <- NULL
 ## Investigate sunset time variable. We can categorize the sunset time because the sunset hours are between 17 and 20
 ### we should create the following category variables
 ### 17, 17:30, 18, 18:30, 19, 19:30, 20, 20:30, 21
+# DELETE THIS VARIABLE 
 sunsetTimeCols <- subset(appearColNames, grepl("sunsetMinute|sunsetHour", appearColNames))
 appearsProcessed$sunsetTime <- apply(appearsProcessed[, sunsetTimeCols], 1, getSunsetFactorTime)
 appearsProcessed$sunsetTime <- as.factor(appearsProcessed$sunsetTime)
@@ -27,6 +28,7 @@ appearsProcessed[, sunsetTimeCols] <- NULL
 ## Investigate sunset time variable. We can categorize the sunset time because the sunset hours are between 17 and 20
 ### we should create the following category variables
 ### 4, 4:30, 5, 5:30, 6, 6:30, 7, 7:30, 8, 8:30
+# DELETE THIS VARIABLE 
 sunriseTimeCols <- subset(appearColNames, grepl("sunriseHour|sunriseMinute", appearColNames))
 appearsProcessed$sunriseTime <- apply(appearsProcessed[, sunriseTimeCols], 1, getSunriseFactorTime)
 appearsProcessed$sunriseTime <- as.factor(appearsProcessed$sunriseTime)

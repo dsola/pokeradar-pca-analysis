@@ -3,10 +3,14 @@ source("R/functions.R")
 
 ## Load the dataset
 appears <- read.csv("data/300k.csv",header=T, check.names = FALSE)
+
 ## Define the number of rows to analyze
 nRows <- 10000
 ## Display the columns
 appearColNames <- colnames(appears)
+
+## You can increase the memory limit using memory.limit(size) (not available in Linux/Mac)
+
 ## Store 10000 random observations into another variable to start the pre-processing
 appearsProcessed <- appears[sample(1:nRows, replace = TRUE),]
 

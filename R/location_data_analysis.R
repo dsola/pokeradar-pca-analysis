@@ -27,6 +27,8 @@ appearsProcessed$population_density <- NULL
 gymInMatches <- subset(appearColNames, grepl("gymIn", appearColNames))
 appearsProcessed[, gymInMatches] <- NULL
 
+## Podemos transformar a categorica con las booleanas y eliminar la numérica también como el caso anterior
+
 ## Delete pokestopInX because it's informed in pokestopDistanceKm
 pokestopInMatches <- subset(appearColNames, grepl("pokestopIn", appearColNames))
 appearsProcessed[, pokestopInMatches] <- NULL
