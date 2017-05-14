@@ -12,7 +12,6 @@ numericVariables <- c(
 
 # Delete all the factor Variables because they distort on the analysis
 appearsPCAProcessed <- appearsProcessed
-appearsPCAProcessed[,factorVariables] <- NULL
 
 # We have to choose the active variables
 ## Factor variables -> city, closeToWater, continent, weatherIcon, class, urbanization, appearedDayOfWeek
@@ -20,8 +19,8 @@ appearsPCAProcessed[,factorVariables] <- NULL
 numberOfDimensions = 5
 #Execute the PCA
 pca.desp <- PCA(
-  appearsPCAProcessed, 
-  quali.sup=c(4)
+  appearsProcessed, 
+  quali.sup=c(1:12,164:166)
   #ncp=numberOfDimensions
 )
 

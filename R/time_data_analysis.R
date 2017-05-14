@@ -18,13 +18,8 @@ appearsProcessed$appearedYear <- NULL
 unique(appears$appearedMonth) # Only one value, so we can delete from dataset
 appearsProcessed$appearedMonth <- NULL
 
-### Take a look to the continous variables
-hist(appearsProcessed$appearedHour, main="Histogram of appeared hours")
-boxplot(appearsProcessed$appearedHour, main="Box Plot of appeared hours")
-
-hist(appearsProcessed$appearedDay, main="Histogram of appeared days")
-boxplot(appearsProcessed$appearedDay, main="Box Plot of appeared days")
-# The same than day of week
+### Delete the continous variables of hour and minute which are described as time of day
+appearsProcessed$appearedHour <- NULL
 appearsProcessed$appearedDay <- NULL
 
 ## Now let's take a look to the factor variables

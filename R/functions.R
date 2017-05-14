@@ -116,3 +116,49 @@ tranformGymDistanceToFactorVariable <- function(appear) {
     "gymIn+5000m"
   }
 }
+
+transformAtmosphericPressureToFactorVariable <- function(appear) {
+  if (appear["pressure"] < 1005) "Low"
+  else if (appear["pressure"] <= 1018) "Normal"
+  else "High"
+}
+
+transformTemperatureToFactorVariable <- function(appear) {
+  if (appear["temperature"] < 0) "Very Cold"
+  else if (appear["temperature"] <= 10) "Cold"
+  else if (appear["temperature"] <= 20) "Tempered"
+  else if (appear["temperature"] <= 30) "Warm"
+  else "Very Warm"
+}
+
+
+tranformWindSpeedToFactorVariable <- function(appear) {
+  if (appear["windSpeed"] < 5) { 
+    "Calm"
+  } else if (appear["windSpeed"] <= 6) {
+    "Light Air"
+  } else if (appear["windSpeed"] <= 12) {
+    "Light breeze"
+  } else if (appear["windSpeed"] <= 19) {
+    "Gentle breeze"
+  } else if (appear["windSpeed"] <= 28) {
+    "Moderate breeze"
+  } else if (appear["windSpeed"] <= 38) {
+    "Fresh breeze"
+  } else if (appear["windSpeed"] <= 50) {
+    "Strong breeze"
+  } else {
+    "High wind"
+  }
+}
+
+transformWindBearingToFactorVariable <- function(appear) {
+  if (appear["windBearing"] > 337.5 || appear["windBearing"] < 22.5) "North"
+  else if (appear["windBearing"] < 67.5) "North-East"
+  else if (appear["windBearing"] < 112.5) "East"
+  else if (appear["windBearing"] < 157.5) "South-East"
+  else if (appear["windBearing"] < 202.5) "South"
+  else if (appear["windBearing"] < 247.5) "South-West"
+  else if (appear["windBearing"] < 292.5) "West"
+  else if (appear["windBearing"] < 337.5) "North-West"
+}

@@ -31,13 +31,10 @@ source("R/location_data_analysis.R")
 # Let's analyze the wather data!
 source("R/weather_data_analysis.R")
 
-## Convert the class attribute into factor variable
-appearsProcessed$class <- as.factor(appearsProcessed$class)
+## Delete the class because we are focus on the co-occurrence
+appearsProcessed$class <- NULL
 ## Pokemon ID represents the same than class...
 appearsProcessed$pokemonId <- NULL
-
-## TODO: Add if the Pokémon is rare, the Pokémon type or the pokemon habitats
-
 
 ## Execute the PCA analysis
 source("R/pca_analysis.R")
