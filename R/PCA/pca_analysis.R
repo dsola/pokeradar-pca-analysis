@@ -13,14 +13,17 @@ numericVariables <- c(
 # Delete all the factor Variables because they distort on the analysis
 appearsPCAProcessed <- appearsProcessed
 
+## Delete the class because we are focus on the co-occurrence
+appearsPCAProcessed$class <- NULL
+
 # We have to choose the active variables
 ## Factor variables -> city, closeToWater, continent, weatherIcon, class, urbanization, appearedDayOfWeek
 ## Continous variables -> gymDistanceKm, pokestopDistanceKm, appearedHour
 numberOfDimensions = 5
 #Execute the PCA
 pca.desp <- PCA(
-  appearsProcessed, 
-  quali.sup=c(1:12,164:166)
+  appearsPCAProcessed, 
+  quali.sup=c(1:12,163:165)
   #ncp=numberOfDimensions
 )
 

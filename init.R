@@ -23,26 +23,21 @@ appearsProcessed$X_id <- NULL
 appearsProcessed$'_id' <- NULL
 
 # Let's analyze the time data!
-source("R/time_data_analysis.R")
+source("R/processing/time_data_analysis.R")
 
 # Let's analyze the location data!
-source("R/location_data_analysis.R")
+source("R/processing/location_data_analysis.R")
 
 # Let's analyze the wather data!
-source("R/weather_data_analysis.R")
+source("R/processing/weather_data_analysis.R")
 
 ## Delete the class because we are focus on the co-occurrence
-appearsProcessed$class <- NULL
+#appearsProcessed$class <- NULL
 ## Pokemon ID represents the same than class...
 appearsProcessed$pokemonId <- NULL
 
 ## Execute the PCA analysis
-source("R/pca_analysis.R")
+source("R/PCA/init.R")
 
-# Execute the clustering analysis
-source("R/clustering.R")
-
-# Execute the profiling analysis
-source("R/profiling.R")
-
-
+## Execute the MCA analysis
+source("R/MCA/init.R")
